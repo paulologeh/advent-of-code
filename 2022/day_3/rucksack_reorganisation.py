@@ -2,7 +2,7 @@ def ascii_to_priority(character: str) -> int:
     if character.islower():
         return ord(character) - 97 + 1
     else:
-        return ord(character) - 65 + 1 + 26
+        return ord(character) - 65 + 27
 
 
 def item_types_priorities_sum():
@@ -11,22 +11,10 @@ def item_types_priorities_sum():
         for line in input_file:
             rucksack = line.strip()
             mid_point = round(len(rucksack) / 2)
-            compartment_1 = rucksack[:mid_point]
-            compartment_2 = rucksack[mid_point:]
-
-            items = {}
-            for item in compartment_1:
-                if item not in items:
-                    items[item] = 0
-
-                items[item] += 1
-
-            for item in compartment_2:
-                if item in items:
-                    common_item = item
-                    break
-
-            total_priority += ascii_to_priority(common_item)
+            compartment_1 = set(rucksack[:mid_point])
+            compartment_2 = set(rucksack[mid_point:])
+            common_item = compartment_1.intersection(compartment_2)
+            total_priority += ascii_to_priority(list(common_item)[0])
 
     print(total_priority)
 
@@ -37,33 +25,12 @@ def item_types_priorities_three_elf_group_sum():
         lines = [line.strip() for line in input_file]
 
     for idx in range(0, len(lines), 3):
-        group = {}
-        rucksack_1_unique = set(lines[idx])
-        rucksack_2_unique = set(lines[idx + 1])
-        rucksack_3_unique = set(lines[idx + 2])
+        rucksack_1_set = set(lines[idx])
+        rucksack_2_set = set(lines[idx + 1])
+        rucksack_3_set = set(lines[idx + 2])
 
-        for item in rucksack_1_unique:
-            if item not in group:
-                group[item] = 0
-
-            group[item] += 1
-
-        for item in rucksack_2_unique:
-            if item not in group:
-                group[item] = 0
-
-            group[item] += 1
-
-        for item in rucksack_3_unique:
-            if item not in group:
-                group[item] = 0
-
-            group[item] += 1
-
-        for (key, value) in group.items():
-            if value == 3:
-                total_priority += ascii_to_priority(key)
-                break
+        badge = rucksack_1_set.intersection(rucksack_2_set, rucksack_3_set)
+        total_priority += ascii_to_priority(list(badge)[0])
 
     print(total_priority)
 
