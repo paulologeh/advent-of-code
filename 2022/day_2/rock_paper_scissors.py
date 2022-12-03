@@ -1,19 +1,15 @@
-SHAPE_POINTS = {
-    'X': 1,
-    'Y': 2,
-    'Z': 3
-}
+SHAPE_POINTS = {"X": 1, "Y": 2, "Z": 3}
 
 OUTCOME_POINTS = {
-    'AX': 3,
-    'AY': 6,
-    'AZ': 0,
-    'BX': 0,
-    'BY': 3,
-    'BZ': 6,
-    'CX': 6,
-    'CY': 0,
-    'CZ': 3
+    "AX": 3,
+    "AY": 6,
+    "AZ": 0,
+    "BX": 0,
+    "BY": 3,
+    "BZ": 6,
+    "CX": 6,
+    "CY": 0,
+    "CZ": 3,
 }
 
 
@@ -31,21 +27,17 @@ def strategy_guide_sum():
     """
     total_score = 0
 
-    with open('./input.txt') as input_file:
+    with open("./input.txt") as input_file:
         for line in input_file:
-            game = line.strip().replace(' ', '')
+            game = line.strip().replace(" ", "")
             shape_points = SHAPE_POINTS[game[1]]
             outcome_points = OUTCOME_POINTS[game]
-            total_score += (shape_points + outcome_points)
+            total_score += shape_points + outcome_points
 
     print(total_score)
 
 
-OUTCOME_POINTS_EXPECTED = {
-    'X': 0,
-    'Y': 3,
-    'Z': 6
-}
+OUTCOME_POINTS_EXPECTED = {"X": 0, "Y": 3, "Z": 6}
 
 
 def get_shape_points_given_outcome(opponent_play, desired_outcome):
@@ -76,16 +68,16 @@ def strategy_guide_sum_part_2():
     """
     total_score = 0
 
-    with open('./input.txt') as input_file:
+    with open("./input.txt") as input_file:
         for line in input_file:
-            game = line.strip().replace(' ', '')
+            game = line.strip().replace(" ", "")
             outcome_points = OUTCOME_POINTS_EXPECTED[game[1]]
             shape_points = get_shape_points_given_outcome(game[0], outcome_points)
-            total_score += (shape_points + outcome_points)
+            total_score += shape_points + outcome_points
 
     print(total_score)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     strategy_guide_sum()
     strategy_guide_sum_part_2()

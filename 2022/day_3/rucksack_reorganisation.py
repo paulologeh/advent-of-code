@@ -7,7 +7,7 @@ def ascii_to_priority(character: str) -> int:
 
 def item_types_priorities_sum():
     total_priority = 0
-    with open('input.txt') as input_file:
+    with open("input.txt") as input_file:
         for line in input_file:
             rucksack = line.strip()
             mid_point = round(len(rucksack) / 2)
@@ -21,7 +21,7 @@ def item_types_priorities_sum():
 
 def item_types_priorities_three_elf_group_sum():
     total_priority = 0
-    with open('input.txt') as input_file:
+    with open("input.txt") as input_file:
         lines = [line.strip() for line in input_file]
 
     for idx in range(0, len(lines), 3):
@@ -35,6 +35,6 @@ def item_types_priorities_three_elf_group_sum():
     print(total_priority)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     item_types_priorities_sum()
     item_types_priorities_three_elf_group_sum()
