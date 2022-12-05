@@ -1,13 +1,14 @@
 import pathlib
-import pytest
+
 import aoc202201 as aoc  # change me
+import pytest
 
 PUZZLE_DIR = pathlib.Path(__file__).parent
 
 
 @pytest.fixture
 def example():
-    puzzle_input = (PUZZLE_DIR / "example.txt").read_text().strip()
+    puzzle_input = (PUZZLE_DIR / "display.txt").read_text().strip()
     return aoc.parse(puzzle_input)
 
 
