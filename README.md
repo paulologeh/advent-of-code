@@ -3,8 +3,8 @@
 https://adventofcode.com
 
 ```bash
-python aoc202201.py display.txt input.txt
-display.txt:
+python aoc202201.py example.txt input.txt
+example.txt:
 514579
 
 input.txt:
