@@ -7,20 +7,21 @@ def parse(puzzle_input):
     return puzzle_input.strip()
 
 
+def start_of_packet_count(buffer, size):
+    for i in range(0, len(buffer)):
+        maybe_marker = set(buffer[i: i + size])
+        if len(maybe_marker) == size:
+            return i + size
+
+
 def part1(buffer):
     """Solve part 1."""
-    for i in range(0, len(buffer)):
-        maybe_marker = set(buffer[i: i + 4])
-        if len(maybe_marker) == 4:
-            return i + 4
+    return start_of_packet_count(buffer, 4)
 
 
 def part2(buffer):
     """Solve part 2."""
-    for i in range(0, len(buffer)):
-        maybe_marker = set(buffer[i: i + 14])
-        if len(maybe_marker) == 14:
-            return i + 14
+    return start_of_packet_count(buffer, 14)
 
 
 def solve(puzzle_input):
