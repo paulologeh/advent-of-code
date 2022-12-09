@@ -10,7 +10,7 @@ def parse(puzzle_input):
     return [(motion.split()[0], int(motion.split()[1])) for motion in motions]
 
 
-def sign(x):
+def increment(x):
     return -1 if x < 0 else 1
 
 
@@ -43,26 +43,21 @@ def move_tail(head, tail):
     tail moves (1,0) R
     tail moves (0,1) U
     """
-    moves = []
     dx = head[0] - tail[0]
     dy = head[1] - tail[1]
 
+    tx = tail[0]
+    ty = tail[1]
     if dx == 0 or dy == 0:
         if abs(dx) > 1:
-            moves = [(sign(dx), 0)]
+            tx += increment(dx)
         elif abs(dy) > 1:
-            moves = [(0, sign(dy))]
+            ty += increment(dy)
     elif abs(dx) == 1 and abs(dy) == 1:
         pass
     else:
-        moves = [(sign(dx), 0), (0, sign(dy))]
-
-    tx = tail[0]
-    ty = tail[1]
-
-    for tail_move in moves:
-        tx += tail_move[0]
-        ty += tail_move[1]
+        tx += increment(dx)
+        ty += increment(dy)
 
     return [tx, ty]
 
