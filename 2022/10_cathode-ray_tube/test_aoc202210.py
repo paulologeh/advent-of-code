@@ -22,3 +22,14 @@ def test_parse_example(example):
 def test_part1_example(example):
     """Test part 1 on example input."""
     assert aoc.part1(example) == 13140
+
+
+def test_part2_example(example):
+    assert (
+        aoc.part2(example)
+        == """##..##..##..##..##..##..##..##..##..##..
+###...###...###...###...###...###...###.
+####....####....####....####....####....
+#####.....#####.....#####.....#####.....
+######......######......######......####
+#######.......#######.......#######.....""")

@@ -14,8 +14,9 @@ def part1(program):
     signal_strengths = []
 
     for instruction in program:
-        no_cycles = 2 if "addx" in instruction else 1
-        v = 0 if instruction == "noop" else int(instruction.split(" ")[-1])
+        [no_cycles, v] = (
+            [1, 0] if instruction == "noop" else [2, int(instruction.split(" ")[-1])]
+        )
         for _ in range(no_cycles):
             cycle += 1
             if cycle in {20, 60, 100, 140, 180, 220}:
@@ -34,8 +35,9 @@ def part2(program):
     ptr_crt = 0
 
     for instruction in program:
-        no_cycles = 2 if "addx" in instruction else 1
-        v = 0 if instruction == "noop" else int(instruction.split(" ")[-1])
+        [no_cycles, v] = (
+            [1, 0] if instruction == "noop" else [2, int(instruction.split(" ")[-1])]
+        )
         for _ in range(no_cycles):
             cycle += 1
             sprite = {x - 1, x, x + 1}
@@ -47,17 +49,16 @@ def part2(program):
 
         x += v
 
-    for x in range(0, len(crt), 40):
-        print("".join(crt[x : x + 40]))
+    return "\n".join(["".join(crt[x: x + 40]) for x in range(0, len(crt), 40)])
 
 
 def solve(puzzle_input):
     """Solve the puzzle for the given input."""
     data = parse(puzzle_input)
     solution1 = part1(data)
-    part2(data)
+    solution2 = part2(data)
 
-    return [solution1]
+    return solution1, solution2
 
 
 if __name__ == "__main__":
