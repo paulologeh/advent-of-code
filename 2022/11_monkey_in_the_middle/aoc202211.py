@@ -1,3 +1,4 @@
+import math
 import pathlib
 import sys
 
@@ -16,8 +17,7 @@ def run_simulation(notes, worry_level_divisor, number_of_rounds):
     for idx, note in enumerate(notes):
         entry = note.split("\n")
         items_start = entry[1].replace("Starting items: ", "").replace(" ", "")
-        items_start = [int(n) for n in items_start.split(",")]
-        items[idx] += items_start
+        items[idx] = [int(n) for n in items_start.split(",")]
         multiple = int(entry[3].split(" ")[-1])
         lcm *= multiple  # we need to keep track of the lcm of all future divisors to prevent our worry levels
         # from becoming very large.
@@ -30,17 +30,16 @@ def run_simulation(notes, worry_level_divisor, number_of_rounds):
             true_idx = int(entry[4].split(" ")[-1])
             false_idx = int(entry[5].split(" ")[-1])
 
-            for item in items[idx]:
+            while len(items[idx]):
+                old = items[idx].pop()
+                new = eval(f"{old} {sign} {old if value == 'old' else value}")
+                new = new // worry_level_divisor
+                recieving_monkey = true_idx if new % divisor == 0 else false_idx
+                items[recieving_monkey].append(new % lcm)
+
                 count[idx] += 1
-                worry_level = eval(f"{item} {sign} {item if value == 'old' else value}")
-                worry_level = worry_level // worry_level_divisor
-                recieving_monkey = true_idx if worry_level % divisor == 0 else false_idx
-                items[recieving_monkey].append(worry_level % lcm)
 
-            items[idx] = []
-
-    most_active = sorted(count)[-2:]
-    return most_active[0] * most_active[1]
+    return math.prod(sorted(count)[-2:])
 
 
 def part1(notes):
