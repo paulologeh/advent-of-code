@@ -16,10 +16,10 @@ def example():
 
 def test_parse_example(example):
     """Test that input is parsed properly."""
-    [grid, start, end, a_positions] = example
+    [grid, start, end, starts] = example
     assert start == (0, 0)
     assert end == (2, 5)
-    assert a_positions == [(0, 0), (0, 1), (1, 0), (2, 0), (3, 0), (4, 0)]
+    assert starts == [(0, 0), (0, 1), (1, 0), (2, 0), (3, 0), (4, 0)]
     assert grid == [
         ["a", "a", "b", "q", "p", "o", "n", "m"],
         ["a", "b", "c", "r", "y", "x", "x", "l"],
@@ -31,11 +31,9 @@ def test_parse_example(example):
 
 def test_part1_example(example):
     """Test part 1 on example input."""
-    [grid, start, end, a_positions] = example
-    assert aoc.part1(grid, [start], end) == 31
+    assert aoc.part1(example) == 31
 
 
 def test_part2_example(example):
     """Test part 2 on example input."""
-    [grid, start, end, a_positions] = example
-    assert aoc.part2(grid, a_positions, end) == 29
+    assert aoc.part2(example) == 29

@@ -6,7 +6,7 @@ from collections import deque
 def parse(puzzle_input):
     """Parse input."""
     grid = [list(line) for line in puzzle_input.split("\n")]
-    a_positions = []
+    starts = []
     start = end = None
     for x, row in enumerate(grid):
         for y, value in enumerate(row):
@@ -19,9 +19,9 @@ def parse(puzzle_input):
                 grid[x][y] = "z"
 
             if grid[x][y] == "a":
-                a_positions.append((x, y))
+                starts.append((x, y))
 
-    return grid, start, end, a_positions
+    return grid, start, end, starts
 
 
 DIRECTIONS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
@@ -51,21 +51,23 @@ def bfs(grid, starts, end):
                     q.append(discovered)
 
 
-def part1(grid, start, end):
+def part1(data):
     """Solve part 1."""
-    return bfs(grid, start, end)
+    [grid, start, end, _] = data
+    return bfs(grid, [start], end)
 
 
-def part2(grid, start, end):
+def part2(data):
     """Solve part 2."""
-    return bfs(grid, start, end)
+    [grid, _, end, starts] = data
+    return bfs(grid, starts, end)
 
 
 def solve(puzzle_input):
     """Solve the puzzle for the given input."""
-    grid, start, end, a_positions = parse(puzzle_input)
-    solution1 = part1(grid, [start], end)
-    solution2 = part2(grid, a_positions, end)
+    data = parse(puzzle_input)
+    solution1 = part1(data)
+    solution2 = part2(data)
 
     return solution1, solution2
 
