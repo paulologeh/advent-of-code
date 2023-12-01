@@ -1,10 +1,13 @@
 import pathlib
 import sys
+import pytest
+
+PUZZLE_DIR = pathlib.Path(__file__).parent
 
 
 def parse(puzzle_input):
     """Parse input."""
-    pass
+    return puzzle_input
 
 
 def part1(data):
@@ -24,6 +27,30 @@ def solve(puzzle_input):
     solution2 = part2(data)
 
     return solution1, solution2
+
+
+@pytest.fixture
+def example():
+    puzzle_input = (PUZZLE_DIR / "example.txt").read_text().strip()
+    return parse(puzzle_input)
+
+
+@pytest.mark.skip(reason="Not implemented")
+def test_parse_example(example):
+    """Test that input is parsed properly."""
+    assert example == ...
+
+
+@pytest.mark.skip(reason="Not implemented")
+def test_part1_example1(example):
+    """Test part 1 on example input."""
+    assert part1(example) == ...
+
+
+@pytest.mark.skip(reason="Not implemented")
+def test_part2_example1(example):
+    """Test part 2 on example input."""
+    assert part2(example) ==...
 
 
 if __name__ == "__main__":
