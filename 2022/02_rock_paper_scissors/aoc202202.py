@@ -19,7 +19,7 @@ OUTCOME_POINTS_EXPECTED = {"X": 0, "Y": 3, "Z": 6}
 
 
 def get_shape_points_given_outcome(opponent_play, desired_outcome):
-    for (key, value) in OUTCOME_POINTS.items():
+    for key, value in OUTCOME_POINTS.items():
         if opponent_play in key and value == desired_outcome:
             return SHAPE_POINTS[key[1]]
 

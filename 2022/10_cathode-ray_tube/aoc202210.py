@@ -49,7 +49,7 @@ def part2(program):
 
         x += v
 
-    return "\n".join(["".join(crt[x: x + 40]) for x in range(0, len(crt), 40)])
+    return "\n".join(["".join(crt[x : x + 40]) for x in range(0, len(crt), 40)])
 
 
 def solve(puzzle_input):

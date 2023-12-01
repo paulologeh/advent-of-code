@@ -15,7 +15,7 @@ def directions(heights, row, col):
     up = [heights[y][col] for y in range(row)]
     left = heights[row][:col]
     down = [heights[y][col] for y in range(row + 1, rows)]
-    right = heights[row][col + 1:]
+    right = heights[row][col + 1 :]
     left.reverse()
     up.reverse()
 
@@ -49,12 +49,12 @@ def part1(heights):
             curr_height = heights[row][col]
             up, left, down, right = directions(heights, row, col)
             if any(
-                    [
-                        is_visible(curr_height, up),
-                        is_visible(curr_height, left),
-                        is_visible(curr_height, down),
-                        is_visible(curr_height, right),
-                    ]
+                [
+                    is_visible(curr_height, up),
+                    is_visible(curr_height, left),
+                    is_visible(curr_height, down),
+                    is_visible(curr_height, right),
+                ]
             ):
                 visible.append(curr_height)
 

@@ -9,7 +9,7 @@ def parse(puzzle_input):
 
 def start_of_packet_count(buffer, size):
     for i in range(0, len(buffer)):
-        maybe_marker = set(buffer[i: i + size])
+        maybe_marker = set(buffer[i : i + size])
         if len(maybe_marker) == size:
             return i + size
 

@@ -10,19 +10,19 @@ def parse(puzzle_input):
 
     for action in terminal:
         match action.split(" "):
-            case '$', 'cd', directory:
-                if directory == '..':
+            case "$", "cd", directory:
+                if directory == "..":
                     dir_stack.pop()
                 else:
                     dir_stack.append(directory)
-            case '$', 'ls':
+            case "$", "ls":
                 continue
-            case 'dir', _:
+            case "dir", _:
                 continue
             case size, _:
                 # we must add the file size to every path in the stack and not just the current dir
                 for idx in range(len(dir_stack)):
-                    curr_path = '/' if idx == 0 else '/'.join(dir_stack[:idx+1])[1:]
+                    curr_path = "/" if idx == 0 else "/".join(dir_stack[: idx + 1])[1:]
                     if curr_path not in dirs_size:
                         dirs_size[curr_path] = 0
 

@@ -68,7 +68,7 @@ def part1(motions):
     visited.add((0, 0))
     head = [0, 0]
     tail = [0, 0]
-    for (direction, n) in motions:
+    for direction, n in motions:
         movement = move[direction]
         for _ in range(n):
             head[0] += movement[0]
@@ -86,7 +86,7 @@ def part2(motions):
     knots = [[0, 0] for _ in range(10)]
     visited.add(tuple(knots[-1]))
 
-    for (direction, n) in motions:
+    for direction, n in motions:
         movement = move[direction]
         for _ in range(n):
             knots[0][0] += movement[0]

@@ -2,7 +2,7 @@ import pathlib
 import sys
 
 
-class Node():
+class Node:
     def __init__(self):
         self.parent = None
         self.children = []  # None if file, [] if folder
@@ -10,9 +10,11 @@ class Node():
         self.size = 0
 
     def print_node(self, action):
-        print(f"'action:{action}'   name: {self.name} parent:{None if self.parent is None else self.parent.name} "
-              f"children_len:"
-              f"{len(self.children) if self.children else None} size:{self.size}")
+        print(
+            f"'action:{action}'   name: {self.name} parent:{None if self.parent is None else self.parent.name} "
+            f"children_len:"
+            f"{len(self.children) if self.children else None} size:{self.size}"
+        )
 
 
 def parse(puzzle_input):
@@ -23,19 +25,21 @@ def parse(puzzle_input):
 
     for action in terminal:
         match action.split(" "):
-            case '$', 'cd', directory:
-                if directory == '..':
+            case "$", "cd", directory:
+                if directory == "..":
                     curr_node = curr_node.parent
-                elif directory == '/':
+                elif directory == "/":
                     head = Node()
                     head.name = directory
                     curr_node = head
                 else:
-                    next_node = [child for child in curr_node.children if child.name == directory]
+                    next_node = [
+                        child for child in curr_node.children if child.name == directory
+                    ]
                     curr_node = next_node[0]
-            case '$', 'ls':
+            case "$", "ls":
                 continue
-            case 'dir', directory:
+            case "dir", directory:
                 new_node = Node()
                 new_node.name = directory
                 new_node.parent = curr_node
@@ -57,7 +61,9 @@ def calculate_folder_sizes(head, size):
     if head.children is None:
         return head, head.size
     else:
-        size_sum = sum([calculate_folder_sizes(child, size)[1] for child in head.children])
+        size_sum = sum(
+            [calculate_folder_sizes(child, size)[1] for child in head.children]
+        )
         head.size += size_sum
         return head, head.size
 
