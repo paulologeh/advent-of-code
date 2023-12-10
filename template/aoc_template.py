@@ -50,7 +50,7 @@ def test_part1_example1(example):
 @pytest.mark.skip(reason="Not implemented")
 def test_part2_example1(example):
     """Test part 2 on example input."""
-    assert part2(example) ==...
+    assert part2(example) == ...
 
 
 if __name__ == "__main__":
